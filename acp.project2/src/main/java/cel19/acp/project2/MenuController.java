@@ -1,11 +1,16 @@
 package cel19.acp.project2;
 
+import java.io.File;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 
 public class MenuController {
-	
+
 	@FXML
 	TextArea textArea;
 	@FXML
@@ -17,27 +22,39 @@ public class MenuController {
 	@FXML
 	MenuItem spellCheckMenuItem;
 
-    @FXML
-    private void openMenuItemHandler()
+	@FXML
+	private void openMenuItemHandler() {
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Open Resource File");
+		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files", "*.txt"),
+												new ExtensionFilter("All Files", "*.*"));
+		Stage fileChooserStage = new Stage();
+		File selectedFile = fileChooser.showOpenDialog(fileChooserStage);
+		if (selectedFile != null) {
+			System.out.println(selectedFile.getName());
+			insertText(selectedFile.getName());
+		}
+		else
+			System.out.println("File was not opened");
+	}
+
+	@FXML
+	private void saveMenuItemHandler() {
+
+	}
+
+	@FXML
+	private void exitMenuItemHandler() {
+
+	}
+
+	@FXML
+	private void spellCheckMenuItemHandler() {
+
+	}
+	
+	private static void insertText(String fileName)
     {
-    	
-    }
-    
-    @FXML
-    private void saveMenuItemHandler()
-    {
-    	
-    }
-    
-    @FXML
-    private void exitMenuItemHandler()
-    {
-    	
-    }
-    
-    @FXML
-    private void spellCheckMenuItemHandler()
-    {
-    	
+		
     }
 }

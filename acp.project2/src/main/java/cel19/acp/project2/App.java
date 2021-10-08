@@ -20,11 +20,12 @@ public class App extends Application {
 
     private static Scene scene;
     
+    public static String fileName = "Words.txt";
     public static Set<String> wordSet = new HashSet<String>();
 
     @Override
     public void start(Stage stage) throws IOException {
-    	readFile("Words.txt");
+    	readFile(fileName);
     	System.out.println(wordSet);
         scene = new Scene(loadFXML("menu"), 640, 480);
         stage.setScene(scene);
@@ -53,6 +54,11 @@ public class App extends Application {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+    }
+    
+    public void insertText()
+    {
+    	
     }
 
     public static void main(String[] args) {
