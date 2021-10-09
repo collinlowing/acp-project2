@@ -1,6 +1,8 @@
 package cel19.acp.project2;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.LinkedHashSet;
 
 import javafx.fxml.FXML;
@@ -26,7 +28,7 @@ public class MenuController {
 	@FXML
 	private void openMenuItemHandler() {
 		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Open Resource File");
+		fileChooser.setTitle("Open Text File");
 		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files", "*.txt"),
 				new ExtensionFilter("All Files", "*.*"));
 		Stage fileChooserStage = new Stage();
@@ -40,7 +42,19 @@ public class MenuController {
 
 	@FXML
 	private void saveMenuItemHandler() {
-
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Save To File");
+		Stage fileChooserStage = new Stage();
+		File file = fileChooser.showSaveDialog(fileChooserStage);
+		if (file != null) {
+			try {
+				PrintWriter out = new PrintWriter(file.getCanonicalPath());
+				out.print(textArea.getText());
+				out.close();
+			} catch (IOException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 	}
 
 	@FXML
