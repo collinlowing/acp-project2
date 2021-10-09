@@ -45,7 +45,7 @@ public class MenuController {
 
 	@FXML
 	private void exitMenuItemHandler() {
-
+		System.exit(0);
 	}
 
 	@FXML
