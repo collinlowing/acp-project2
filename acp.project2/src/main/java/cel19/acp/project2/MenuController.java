@@ -1,6 +1,7 @@
 package cel19.acp.project2;
 
 import java.io.File;
+import java.util.LinkedHashSet;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -27,14 +28,13 @@ public class MenuController {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open Resource File");
 		fileChooser.getExtensionFilters().addAll(new ExtensionFilter("Text Files", "*.txt"),
-												new ExtensionFilter("All Files", "*.*"));
+				new ExtensionFilter("All Files", "*.*"));
 		Stage fileChooserStage = new Stage();
 		File selectedFile = fileChooser.showOpenDialog(fileChooserStage);
 		if (selectedFile != null) {
 			System.out.println(selectedFile.getName());
 			insertText(selectedFile.getName());
-		}
-		else
+		} else
 			System.out.println("File was not opened");
 	}
 
@@ -52,9 +52,18 @@ public class MenuController {
 	private void spellCheckMenuItemHandler() {
 
 	}
-	
-	private static void insertText(String fileName)
-    {
-		
-    }
+
+	private void insertText(String fileName) {
+		LinkedHashSet<String> wordSet;
+		wordSet = App.readFile(fileName);
+
+		String text = "";
+
+		for (String word : wordSet) {
+			text += word + " ";
+		}
+		System.out.println(text);
+
+		textArea.setText(text);
+	}
 }

@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -21,7 +22,7 @@ public class App extends Application {
     private static Scene scene;
     
     public static String fileName = "Words.txt";
-    public static Set<String> wordSet = new HashSet<String>();
+    public static LinkedHashSet<String> wordSet = new LinkedHashSet<String>();
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -41,7 +42,7 @@ public class App extends Application {
         return fxmlLoader.load();
     }
     
-    public void readFile(String fileName)
+    public static LinkedHashSet<String> readFile(String fileName)
     {
     	File file = new File(fileName);
     	try {
@@ -54,11 +55,7 @@ public class App extends Application {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-    }
-    
-    public void insertText()
-    {
-    	
+    	return wordSet;
     }
 
     public static void main(String[] args) {
